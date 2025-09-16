@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="staff">
+        <createTable tableName="STAFF_DEPARTMENT">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_STAFF_DEPARTMENT"/>
+            </column>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(255)"/>
+            <column name="CREATED_DATE" type="timestamp with time zone"/>
+            <column name="LAST_MODIFIED_BY" type="VARCHAR(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="timestamp with time zone"/>
+            <column name="DELETED_BY" type="VARCHAR(255)"/>
+            <column name="DELETED_DATE" type="timestamp with time zone"/>
+            <column name="NAME" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="staff">
+        <createTable tableName="STAFF_EMPLOYEE_STATUS">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_STAFF_EMPLOYEE_STATUS"/>
+            </column>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(255)"/>
+            <column name="CREATED_DATE" type="timestamp with time zone"/>
+            <column name="LAST_MODIFIED_BY" type="VARCHAR(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="timestamp with time zone"/>
+            <column name="DELETED_BY" type="VARCHAR(255)"/>
+            <column name="DELETED_DATE" type="timestamp with time zone"/>
+            <column name="NAME" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="3" author="staff">
+        <createTable tableName="STAFF_POSITION">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_STAFF_POSITION"/>
+            </column>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(255)"/>
+            <column name="CREATED_DATE" type="timestamp with time zone"/>
+            <column name="LAST_MODIFIED_BY" type="VARCHAR(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="timestamp with time zone"/>
+            <column name="DELETED_BY" type="VARCHAR(255)"/>
+            <column name="DELETED_DATE" type="timestamp with time zone"/>
+            <column name="NAME" type="VARCHAR(255)"/>
+            <column name="DESCRIPTION" type="VARCHAR(255)"/>
+            <column name="STAFF_ID" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="4" author="staff">
+        <createTable tableName="STAFF_STAFF">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_STAFF_STAFF"/>
+            </column>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(255)"/>
+            <column name="CREATED_DATE" type="timestamp with time zone"/>
+            <column name="LAST_MODIFIED_BY" type="VARCHAR(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="timestamp with time zone"/>
+            <column name="DELETED_BY" type="VARCHAR(255)"/>
+            <column name="DELETED_DATE" type="timestamp with time zone"/>
+            <column name="FIRST_NAME" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MIDDLE_NAME" type="VARCHAR(255)"/>
+            <column name="LAST_NAME" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="EMAIL" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PHONE" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="USER_ID_ID" type="UUID"/>
+            <column name="BIRTH_DATE" type="DATE"/>
+            <column name="EMPLOYMENT_DATE" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PHOTO_URL" type="VARCHAR(255)"/>
+            <column name="POSITIONS_ID" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEPARTMENTS_ID" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="EMPLOYEE_STATUS_ID" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="5" author="staff">
+        <createIndex indexName="IDX_STAFF_POSITION_STAFF" tableName="STAFF_POSITION">
+            <column name="STAFF_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="STAFF_ID" baseTableName="STAFF_POSITION"
+                                 constraintName="FK_STAFF_POSITION_ON_STAFF" referencedColumnNames="ID"
+                                 referencedTableName="STAFF_STAFF"/>
+    </changeSet>
+    <changeSet id="6" author="staff">
+        <createIndex indexName="IDX_STAFF_STAFF_DEPARTMENTS" tableName="STAFF_STAFF">
+            <column name="DEPARTMENTS_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="DEPARTMENTS_ID" baseTableName="STAFF_STAFF"
+                                 constraintName="FK_STAFF_STAFF_ON_DEPARTMENTS" referencedColumnNames="ID"
+                                 referencedTableName="STAFF_DEPARTMENT"/>
+    </changeSet>
+    <changeSet id="7" author="staff">
+        <createIndex indexName="IDX_STAFF_STAFF_EMPLOYEE_STATUS" tableName="STAFF_STAFF">
+            <column name="EMPLOYEE_STATUS_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="EMPLOYEE_STATUS_ID" baseTableName="STAFF_STAFF"
+                                 constraintName="FK_STAFF_STAFF_ON_EMPLOYEE_STATUS" referencedColumnNames="ID"
+                                 referencedTableName="STAFF_EMPLOYEE_STATUS"/>
+    </changeSet>
+    <changeSet id="8" author="staff">
+        <createIndex indexName="IDX_STAFF_STAFF_POSITIONS" tableName="STAFF_STAFF">
+            <column name="POSITIONS_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="POSITIONS_ID" baseTableName="STAFF_STAFF"
+                                 constraintName="FK_STAFF_STAFF_ON_POSITIONS" referencedColumnNames="ID"
+                                 referencedTableName="STAFF_POSITION"/>
+    </changeSet>
+    <changeSet id="9" author="staff">
+        <createIndex indexName="IDX_STAFF_STAFF_USER_ID" tableName="STAFF_STAFF">
+            <column name="USER_ID_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="USER_ID_ID" baseTableName="STAFF_STAFF"
+                                 constraintName="FK_STAFF_STAFF_ON_USER_ID" referencedColumnNames="ID"
+                                 referencedTableName="STAFF_USER"/>
+    </changeSet>
+</databaseChangeLog>
