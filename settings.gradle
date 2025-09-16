@@ -1,0 +1,6 @@
+rootProject.name = 'KindergartenPlatform'
+
+include(
+        "kindergarten-service",
+        "staff-service",
+)
