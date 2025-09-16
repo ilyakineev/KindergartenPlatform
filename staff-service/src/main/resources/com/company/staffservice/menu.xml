@@ -2,7 +2,14 @@
 <menu-config xmlns="http://jmix.io/schema/flowui/menu">
 
     <menu id="application" title="msg://com.company.staffservice/menu.application.title" opened="true">
+        <item view="staff_Staff.list" title="msg://com.company.staffservice.view.staff/staffListView.title"/>
+        <item view="staff_Position.list" title="msg://com.company.staffservice.view.position/positionListView.title"/>
+        <item view="staff_EmployeeStatus.list"
+        title="msg://com.company.staffservice.view.employeestatus/employeeStatusListView.title"/>
+        <item view="staff_Department.list"
+        title="msg://com.company.staffservice.view.department/departmentListView.title"/>
+    </menu>
+    <menu id="administrator" title="msg://com.company.staffservice/menu.administrator.title">
         <item view="staff_User.list" title="msg://com.company.staffservice.view.user/UserListView.title"/>
     </menu>
-
 </menu-config>

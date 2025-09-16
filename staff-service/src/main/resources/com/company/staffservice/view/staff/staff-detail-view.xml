@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://staffDetailView.title"
+      focusComponent="form">
+    <data>
+        <instance id="staffDc"
+                  class="com.company.staffservice.entity.Staff">
+            <fetchPlan extends="_base"/>
+            <loader id="staffDl"/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
+    <actions>
+        <action id="saveAction" type="detail_saveClose"/>
+        <action id="closeAction" type="detail_close"/>
+    </actions>
+    <layout>
+        <formLayout id="form" dataContainer="staffDc">
+            <responsiveSteps>
+                <responsiveStep minWidth="0" columns="1"/>
+                <responsiveStep minWidth="40em" columns="2"/>
+            </responsiveSteps>
+            <textField id="firstNameField" property="firstName"/>
+            <textField id="middleNameField" property="middleName"/>
+            <textField id="lastNameField" property="lastName"/>
+            <textField id="emailField" property="email"/>
+            <textField id="phoneField" property="phone"/>
+            <datePicker id="birthDateField" property="birthDate"/>
+            <datePicker id="employmentDateField" property="employmentDate"/>
+            <textField id="photoUrlField" property="photoUrl"/>
+        </formLayout>
+        <hbox id="detailActions">
+            <button id="saveAndCloseButton" action="saveAction"/>
+            <button id="closeButton" action="closeAction"/>
+        </hbox>
+    </layout>
+</view>
