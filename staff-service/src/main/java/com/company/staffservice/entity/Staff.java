@@ -1,5 +1,6 @@
 package com.company.staffservice.entity;
 
+import io.jmix.core.FileRef;
 import io.jmix.core.annotation.DeletedBy;
 import io.jmix.core.annotation.DeletedDate;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
@@ -97,8 +98,8 @@ public class Staff {
     @NotNull
     private LocalDate employmentDate;
 
-    @Column(name = "PHOTO_URL")
-    private String photoUrl;
+    @Column(name = "PHOTO_URL", length = 1024)
+    private FileRef photoUrl;
 
     @NotNull
     @JoinColumn(name = "POSITIONS_ID", nullable = false)

@@ -6,7 +6,11 @@
     <data>
         <collection id="staffsDc"
                     class="com.company.staffservice.entity.Staff">
-            <fetchPlan extends="_base"/>
+            <fetchPlan extends="_base">
+                <property name="positions" fetchPlan="_base"/>
+                <property name="departments" fetchPlan="_base"/>
+                <property name="employeeStatus" fetchPlan="_base"/>
+            </fetchPlan>
             <loader id="staffsDl" readOnly="true"/>
         </collection>
     </data>
@@ -51,7 +55,6 @@
                 <column property="phone"/>
                 <column property="birthDate"/>
                 <column property="employmentDate"/>
-                <column property="photoUrl"/>
             </columns>
         </dataGrid>
         <hbox id="lookupActions" visible="false">

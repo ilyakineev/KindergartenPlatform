@@ -5,7 +5,11 @@
     <data>
         <instance id="staffDc"
                   class="com.company.staffservice.entity.Staff">
-            <fetchPlan extends="_base"/>
+            <fetchPlan extends="_base">
+                <property name="positions" fetchPlan="_base"/>
+                <property name="departments" fetchPlan="_base"/>
+                <property name="employeeStatus" fetchPlan="_base"/>
+            </fetchPlan>
             <loader id="staffDl"/>
         </instance>
     </data>
@@ -22,6 +26,11 @@
                 <responsiveStep minWidth="0" columns="1"/>
                 <responsiveStep minWidth="40em" columns="2"/>
             </responsiveSteps>
+            <hbox justifyContent="CENTER" alignSelf="CENTER">
+                <image id="image" property="photoUrl" dataContainer="staffDc" height="20em" width="20em"
+                       classNames="user-picture"/>
+                <fileStorageUploadField id="pictureField" dataContainer="staffDc" property="photoUrl"/>
+            </hbox>
             <textField id="firstNameField" property="firstName"/>
             <textField id="middleNameField" property="middleName"/>
             <textField id="lastNameField" property="lastName"/>
@@ -29,7 +38,24 @@
             <textField id="phoneField" property="phone"/>
             <datePicker id="birthDateField" property="birthDate"/>
             <datePicker id="employmentDateField" property="employmentDate"/>
-            <textField id="photoUrlField" property="photoUrl"/>
+            <entityPicker id="positionsField" property="positions">
+                <actions>
+                    <action id="entityLookupAction" type="entity_lookup"/>
+                    <action id="entityClearAction" type="entity_clear"/>
+                </actions>
+            </entityPicker>
+            <entityPicker id="departmentsField" property="departments">
+                <actions>
+                    <action id="entityLookupAction" type="entity_lookup"/>
+                    <action id="entityClearAction" type="entity_clear"/>
+                </actions>
+            </entityPicker>
+            <entityPicker id="employeeStatusField" property="employeeStatus">
+                <actions>
+                    <action id="entityLookupAction" type="entity_lookup"/>
+                    <action id="entityClearAction" type="entity_clear"/>
+                </actions>
+            </entityPicker>
         </formLayout>
         <hbox id="detailActions">
             <button id="saveAndCloseButton" action="saveAction"/>
