@@ -111,7 +111,7 @@ keycloak.role-path=resource_access.staff_service.roles
 
 ```bash
 curl -X POST http://localhost:8180/realms/kindergarten/protocol/openid-connect/token \
---user staff-service:dleek8RbUBJrAgkBQfCp0WhjyXEAnDos \
+--user staff-service:0fD6ffPOfJZ15ZgZ9y3h9PeDKPwjdoG0 \
 -H "Content-Type: application/x-www-form-urlencoded" \
 -d "grant_type=password&scope=openid&username=admin&password=admin"
 ```
