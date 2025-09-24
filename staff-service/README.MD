@@ -21,7 +21,7 @@ main.datasource.url=jdbc:postgresql://localhost/staff
 main.datasource.username=staff
 main.datasource.password=staff
 ```
-
+Для заполнения данных можно использовать [SQL](date.sql)
 ---
 
 ## 2. Настройка Keycloak
