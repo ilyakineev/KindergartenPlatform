@@ -32,7 +32,7 @@
 
 ---
 
-## 2. Микросервисы и их ответственность
+## 2. Cервисы и их ответственность
 
 ### 2.1 `user-service` — пользователи и интеграция с Keycloak
 [Настройка и запуск](user-service/README.MD)
@@ -78,8 +78,8 @@
 ## 10. Используемые технологии
 
 * **Java 17**
-* **Spring Boot**
 * **Jmix**
+* **Spring Boot**
 * **REST API**
 * **OpenAPI (Swagger)**
 * **PostgreSQL**

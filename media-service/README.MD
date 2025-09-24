@@ -1,4 +1,4 @@
-# Настройка MinIO с Docker и Jmix
+# MinIO
 
 ## 1. Запуск MinIO через Docker
 
