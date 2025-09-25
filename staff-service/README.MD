@@ -23,8 +23,22 @@ main.datasource.password=staff
 ```
 Для заполнения данных можно использовать [SQL](date.sql)
 ---
+## 2. Запуск контейнера БД
 
-## 2. Настройка Keycloak
+1. Сделай исполняемым:
+
+   ```bash
+   chmod +x reset-postgres.sh
+   ```
+2. Запусти:
+
+   ```bash
+   ./reset-postgres.sh
+   ```
+
+---
+
+## 3. Настройка Keycloak
 
 Необходимо развернуть и настроить Keycloak.
 Подробнее см. [Настройка и запуск Keycloak](../user-service/README.MD).
@@ -45,7 +59,7 @@ keycloak.role-path=resource_access.staff_service.roles
 
 ---
 
-## 3. Настройка MinIO
+## 4. Настройка MinIO
 
 Необходимо развернуть и настроить MinIO.
 Подробнее см. [Настройка и запуск MinIO](../media-service/README.MD).
@@ -66,13 +80,13 @@ jmix.awsfs.use-path-style-bucket-addressing = true
 
 ---
 
-## 4. Запуск приложения
+## 5. Запуск приложения
 
 После настройки всех сервисов запустите приложение:
 
 ```bash
-./gradlew bootRun
+./gradle staff-service:bootRun
 ```
 
 Приложение будет доступно по адресу:
-[http://localhost:8080](http://localhost:8080)
+[http://localhost:8081/staff/](http://localhost:8081/staff/)

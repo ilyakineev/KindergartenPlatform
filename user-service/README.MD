@@ -1,14 +1,22 @@
 # Keycloak
 
-## 1. Создание Realm
+## 1. Запуск контейнера
 
-1. Откройте админ-панель Keycloak:
+1. Сделай исполняемым:
 
+   ```bash
+   chmod +x reset-keycloak.sh
    ```
-   http://localhost:8180/auth/admin/
+2. Запусти:
+
+   ```bash
+   ./reset-keycloak.sh
    ```
+
+## 2. Создание Realm
+1. Переходим в консоль [`http://localhost:8180`](http://localhost:8180) Keycloak:
+   * Логин/Пароль: `admin` / `admin`
 2. Создайте новый Realm:
-
    ```
    kindergarten
    ```
@@ -16,7 +24,7 @@
 
 ---
 
-## 2. Создание клиента (Client)
+## 3. Создание клиента (Client)
 
 1. В меню Realm перейдите **Clients → Create**.
 2. Введите данные клиента:
@@ -45,7 +53,7 @@
    ```
 ---
 
-## 3. Настройка пользователей
+## 4. Настройка пользователей
 
 1. Перейдите **Users → Add user**.
 2. Создайте пользователя, например:
@@ -58,7 +66,7 @@
 
 ---
 
-## 4. Настройка ролей
+## 5. Настройка ролей
 
 1. Перейдите **Roles → Add Role**.
 2. Создайте роли, которые будут использоваться в Jmix, например:
@@ -71,7 +79,7 @@
 
 ---
 
-## 5. Настройка маппинга ролей (Role Mapping)
+## 6. Настройка маппинга ролей (Role Mapping)
 
 Чтобы роли попадали в токен в структуру:
 
@@ -87,7 +95,7 @@ resource_access.staff_service.roles
 
 ---
 
-## 6. Проверка конфигурации
+## 7. Проверка конфигурации
 
 * Ваш Jmix проект использует стандартную конфигурацию OIDC (`jmix.oidc.use-default-configuration=true`).
 * Пример свойств:
@@ -107,13 +115,13 @@ keycloak.role-path=resource_access.staff_service.roles
 
 ---
 
-## 7. Тестирование
+## 8. Тестирование
 
 Для проверки можно получить токен через `curl`:
 
 ```bash
 curl -X POST http://localhost:8180/realms/kindergarten/protocol/openid-connect/token \
---user staff-service:0fD6ffPOfJZ15ZgZ9y3h9PeDKPwjdoG0 \
+--user staff-service:tEAcycuVgo7B17osgn4jupOoQA5XndgN \
 -H "Content-Type: application/x-www-form-urlencoded" \
 -d "grant_type=password&scope=openid&username=admin&password=admin"
 ```

@@ -1,9 +1,7 @@
-version: '3.9'
-
 services:
   postgres:
     image: postgres:15
-    container_name: postgres
+    container_name: kindergarten-postgres
     environment:
       POSTGRES_DB: staff
       POSTGRES_USER: staff
@@ -11,8 +9,14 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - kindergarten_postgres_data:/var/lib/postgresql/data
+    networks:
+      - kindergarten-net
     restart: unless-stopped
 
 volumes:
-  postgres_data:
+  kindergarten_postgres_data:
+
+networks:
+  kindergarten-net:
+    driver: bridge
