@@ -7,7 +7,7 @@ import io.jmix.core.entity.annotation.SystemLevel;
 import io.jmix.core.metamodel.annotation.DependsOnProperties;
 import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
-import io.jmix.security.authentication.JmixUserDetails;
+import io.jmix.oidc.user.JmixOidcUserEntity;
 import org.springframework.security.core.GrantedAuthority;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -20,7 +20,7 @@ import java.util.UUID;
 @Table(name = "KIND_USER", indexes = {
         @Index(name = "IDX_KIND_USER_ON_USERNAME", columnList = "USERNAME", unique = true)
 })
-public class User implements JmixUserDetails, HasTimeZone {
+public class User extends JmixOidcUserEntity implements HasTimeZone {
 
     @Id
     @Column(name = "ID")

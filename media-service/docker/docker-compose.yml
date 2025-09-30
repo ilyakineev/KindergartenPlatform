@@ -7,8 +7,8 @@ services:
       MINIO_ROOT_PASSWORD: minioadmin
     command: server /data --console-address ":9090"
     ports:
-      - "9000:9000"   # API
-      - "9090:9090"   # Веб-консоль
+      - "9000:9000"
+      - "9090:9090"
     volumes:
       - kindergarten_minio_data:/data
     networks:

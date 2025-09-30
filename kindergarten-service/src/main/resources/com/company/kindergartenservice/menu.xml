@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <menu-config xmlns="http://jmix.io/schema/flowui/menu">
 
-    <menu id="application" title="msg://com.company.kindergartenservice/menu.application.title" opened="true">
+    <menu opened="true" id="application" title="msg://com.company.kindergartenservice/menu.application.title">
         <item view="kind_User.list" title="msg://com.company.kindergartenservice.view.user/UserListView.title"/>
+        <menu id="security" title="msg://com.company.staffservice/menu.security.title">
+            <item view="sec_ResourceRoleModel.list"
+                  title="msg://io.jmix.securityflowui.view.resourcerole/resourceRoleModelListView.menu"/>
+            <item view="sec_RowLevelRoleModel.list"
+                  title="msg://io.jmix.securityflowui.view.rowlevelrole/rowLevelRoleModelListView.menu"/>
+        </menu>
+        <menu id="datatools" title="msg://com.company.staffservice/menu.datatools.title">
+            <item view="datatl_entityInspectorListView"
+                  title="msg://io.jmix.datatoolsflowui.view.entityinspector/listTitle"/>
+        </menu>
     </menu>
-
 </menu-config>

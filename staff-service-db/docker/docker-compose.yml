@@ -1,21 +1,21 @@
 services:
-  postgres:
-    image: postgres:15
-    container_name: kindergarten-postgres
+  staff-postgres:
+    image: postgres:latest
+    container_name: staff-postgres
     environment:
       POSTGRES_DB: staff
       POSTGRES_USER: staff
       POSTGRES_PASSWORD: staff
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
-      - kindergarten_postgres_data:/var/lib/postgresql/data
+      - staff_postgres_data:/var/lib/postgresql/data
     networks:
       - kindergarten-net
     restart: unless-stopped
 
 volumes:
-  kindergarten_postgres_data:
+  staff_postgres_data:
 
 networks:
   kindergarten-net:

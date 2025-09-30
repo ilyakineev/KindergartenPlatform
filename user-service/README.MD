@@ -24,7 +24,7 @@
 
 ---
 
-## 3. Создание клиента (Client)
+## 3. Создание клиента (Client) для staff
 
 1. В меню Realm перейдите **Clients → Create**.
 2. Введите данные клиента:
@@ -35,7 +35,19 @@
     * **Web origins**:  `*`
 3. Нажмите **Save**.
 
-### Настройка клиента
+## 4. Создание клиента (Client) для kindergarten
+
+1. В меню Realm перейдите **Clients → Create**.
+2. Введите данные клиента:
+
+   * **Client ID**: `kindergarten-service`
+   * **Client Protocol**: `openid-connect`
+   * **Root URL**: `http://localhost:8081/kindergarten/*`
+   * **Web origins**:  `*`
+3. Нажмите **Save**.
+
+
+## 5. Настройка клиента
 
 1. **Capability config**:
 
@@ -53,7 +65,7 @@
    ```
 ---
 
-## 4. Настройка пользователей
+## 6. Настройка пользователей
 
 1. Перейдите **Users → Add user**.
 2. Создайте пользователя, например:
@@ -66,7 +78,7 @@
 
 ---
 
-## 5. Настройка ролей
+## 7. Настройка ролей
 
 1. Перейдите **Roles → Add Role**.
 2. Создайте роли, которые будут использоваться в Jmix, например:
@@ -79,12 +91,12 @@
 
 ---
 
-## 6. Настройка маппинга ролей (Role Mapping)
+## 8. Настройка маппинга ролей (Role Mapping)
 
 Чтобы роли попадали в токен в структуру:
 
 ```
-resource_access.staff_service.roles
+resource_access.kindergarten_service.roles
 ```
 
 1. Перейдите **Clients → staff-service → Client scopes → staff-service-dedicated → Add mapper → realm roles**.
@@ -95,7 +107,7 @@ resource_access.staff_service.roles
 
 ---
 
-## 7. Проверка конфигурации
+## 9. Проверка конфигурации
 
 * Ваш Jmix проект использует стандартную конфигурацию OIDC (`jmix.oidc.use-default-configuration=true`).
 * Пример свойств:
@@ -115,7 +127,7 @@ keycloak.role-path=resource_access.staff_service.roles
 
 ---
 
-## 8. Тестирование
+## 10. Тестирование
 
 Для проверки можно получить токен через `curl`:
 
