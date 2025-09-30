@@ -34,6 +34,17 @@
 
 ## 2. Cервисы и их ответственность
 
+    KindergartenPlatform/ 
+    ├─ analytics-service/ 
+    ├─ kindergarten-service/ 
+    ├─ kindergarten-service-db/ 
+    ├─ media-service/ 
+    ├─ staff-service/ 
+    ├─ staff-service-db/ 
+    └─ user-service/
+
+![img.png](img.png)
+
 ### 2.1 `user-service` — пользователи и интеграция с Keycloak
 [Настройка и запуск](user-service/README.MD)
 * Регистрация и синхронизация пользователей (администраторы, воспитатели, родители).
