@@ -8,6 +8,8 @@ import io.jmix.core.metamodel.annotation.DependsOnProperties;
 import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import io.jmix.oidc.user.JmixOidcUserEntity;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -20,6 +22,8 @@ import java.util.UUID;
 @Table(name = "KIND_USER", indexes = {
         @Index(name = "IDX_KIND_USER_ON_USERNAME", columnList = "USERNAME", unique = true)
 })
+@Setter
+@Getter
 public class User extends JmixOidcUserEntity implements HasTimeZone {
 
     @Id
@@ -58,72 +62,12 @@ public class User extends JmixOidcUserEntity implements HasTimeZone {
     @Transient
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(final UUID id) {
-        this.id = id;
-    }
-
-    public Integer getVersion() {
-        return version;
-    }
-
-    public void setVersion(final Integer version) {
-        this.version = version;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
     @Override
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(final String username) {
-        this.username = username;
-    }
-
-    public Boolean getActive() {
-        return active;
-    }
-
-    public void setActive(final Boolean active) {
-        this.active = active;
-    }
-
-    public void setPassword(final String password) {
-        this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(final String email) {
-        this.email = email;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(final String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(final String lastName) {
-        this.lastName = lastName;
-    }
-
-    @Override
+        @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities != null ? authorities : Collections.emptyList();
     }

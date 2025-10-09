@@ -23,6 +23,7 @@ repositories {
 }
 
 dependencies {
+
     implementation 'io.jmix.core:jmix-core-starter'
     implementation 'io.jmix.data:jmix-eclipselink-starter'
     implementation 'io.jmix.security:jmix-security-starter'
@@ -48,6 +49,11 @@ dependencies {
 
     implementation 'io.jmix.superset:jmix-superset-starter'
     implementation 'io.jmix.superset:jmix-superset-flowui-starter'
+
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
+
+    implementation 'io.jmix.restds:jmix-restds-starter'
 }
 
 configurations.implementation {

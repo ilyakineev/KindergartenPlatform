@@ -61,6 +61,8 @@ dependencies {
     implementation 'io.jmix.superset:jmix-superset-starter'
     implementation 'io.jmix.superset:jmix-superset-flowui-starter'
     implementation 'org.postgresql:postgresql'
+
+    implementation 'io.jmix.rest:jmix-rest-starter'
 }
 
 configurations.implementation {
