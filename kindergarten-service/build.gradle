@@ -45,6 +45,9 @@ dependencies {
     testImplementation 'io.jmix.flowui:jmix-flowui-test-assist'
     implementation 'io.jmix.oidc:jmix-oidc-starter'
     implementation 'org.postgresql:postgresql'
+
+    implementation 'io.jmix.superset:jmix-superset-starter'
+    implementation 'io.jmix.superset:jmix-superset-flowui-starter'
 }
 
 configurations.implementation {

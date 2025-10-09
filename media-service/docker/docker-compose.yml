@@ -20,4 +20,4 @@ volumes:
 
 networks:
   kindergarten-net:
-    driver: bridge
+    external: true

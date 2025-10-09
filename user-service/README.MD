@@ -42,7 +42,7 @@
 
    * **Client ID**: `kindergarten-service`
    * **Client Protocol**: `openid-connect`
-   * **Root URL**: `http://localhost:8081/kindergarten/*`
+   * **Root URL**: `http://localhost:8085/kindergarten/*`
    * **Web origins**:  `*`
 3. Нажмите **Save**.
 
@@ -96,6 +96,8 @@
 Чтобы роли попадали в токен в структуру:
 
 ```
+resource_access.staff_service.roles
+
 resource_access.kindergarten_service.roles
 ```
 
@@ -104,7 +106,7 @@ resource_access.kindergarten_service.roles
     * **Token Claim Name**: `resource_access.staff_service.roles`
     * **Add to userinfo**: `ON`
 3. Сохраните.
-
+4. По аналогии делаем тоже самое для kindergarten_service
 ---
 
 ## 9. Проверка конфигурации

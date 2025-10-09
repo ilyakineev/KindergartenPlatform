@@ -57,6 +57,9 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.30'
 
     implementation 'io.jmix.oidc:jmix-oidc-starter'
+
+    implementation 'io.jmix.superset:jmix-superset-starter'
+    implementation 'io.jmix.superset:jmix-superset-flowui-starter'
     implementation 'org.postgresql:postgresql'
 }
 

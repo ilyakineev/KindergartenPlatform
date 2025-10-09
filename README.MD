@@ -46,14 +46,14 @@
 ![img.png](img.png)
 
 ### 2.1 `user-service` — пользователи и интеграция с Keycloak
-[Настройка и запуск](user-service/README.MD)
+
 * Регистрация и синхронизация пользователей (администраторы, воспитатели, родители).
 * Управление профилями.
 * Взаимодействие с Keycloak (provisioning, mappers).
 * Keycloak — точка аутентификации и авторизации.
 
 ### 2.2 `staff-service` — сотрудники
-[Настройка и запуск](staff-service/README.MD)
+
 * CRUD-операции с сотрудниками (воспитатели, няни, повара и др.).
 * Ссылки на фотографии, хранящиеся в MinIO.
 * График работы, квалификация, контактная информация.
@@ -78,7 +78,6 @@
 * Apache Superset для построения отчётов и дашбордов.
 
 ### 2.6 `media-service` (опционально) — медиа
-[Настройка и запуск](media-service/README.MD)
 
 * Прокси-доступ к MinIO.
 * Загрузка и выдача файлов с управлением доступом.
@@ -102,5 +101,40 @@
 * **GitLab CI/CD**
 * **Gradle**
 * **Liquibase**
+
+## 11. Используемые технологии
+
+Для запуска платформы локально необходимо выполнить следующие шаги
+
+Поднять сеть в Docker
+
+```bash
+chmod +x create-network.sh
+```
+
+```bash
+./create-network.sh
+```
+
+```bash
+docker network inspect kindergarten-net
+```
+
+Далее запускаем контейнеры соответствующих сервисов
+
+1) `user-service` — пользователи и интеграция с Keycloak
+   [Настройка и запуск](user-service/README.MD)
+
+2) `staff-service` — БД для сервиса staff-service
+   [Настройка и запуск](staff-service/README.MD)
+
+3) `kindergarten-service` — БД для сервиса kindergarten-service
+   [Настройка и запуск](kindergarten-service/README.MD)
+
+4) `media-service` — MiniO
+   [Настройка и запуск](media-service/README.MD)
+
+5) `analytics-service` — SuperSet (пока не работает - не видит БД)
+    [Настройка и запуск](analytics-service/README.MD)
 
 

@@ -1,0 +1,28 @@
+services:
+  superset:
+    image: apache/superset:latest
+    container_name: kindergarten-superset
+    environment:
+      SUPERSET_DATABASE_URI: postgresql+psycopg2://staff:staff@staff-postgres:5432/staff
+      SUPERSET_SECRET_KEY: 'superset_secret_key'
+      ADMIN_USERNAME: admin
+      ADMIN_PASSWORD: admin
+      ADMIN_FIRSTNAME: Admin
+      ADMIN_LASTNAME: User
+      ADMIN_EMAIL: admin@example.com
+    ports:
+      - "8088:8088"
+    networks:
+      - kindergarten-net
+    restart: unless-stopped
+    command: >
+      /bin/bash -c "
+      pip install psycopg2-binary &&
+      superset db upgrade &&
+      superset init &&
+      superset run -p 8088 --with-threads --reload --debugger
+      "
+
+networks:
+  kindergarten-net:
+    external: true
