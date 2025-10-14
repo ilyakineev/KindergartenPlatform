@@ -4,5 +4,11 @@
         <item view="kind_Child.list" title="msg://com.company.kindergartenservice.view.child/childListView.title"/>
         <item view="kind_Group.list" title="msg://com.company.kindergartenservice.view.group/groupListView.title"/>
         <item view="kind_Parent.list" title="msg://com.company.kindergartenservice.view.parent/parentListView.title"/>
+        <item view="staff_Staff.list" title="msg://com.company.kindergartenservice.view.staff/staffListView.title"/>
+        <item view="staff_EmployeeStatus.list"
+              title="msg://com.company.kindergartenservice.view.employeestatus/employeeStatusListView.title"/>
+        <item view="Position.list" title="msg://com.company.kindergartenservice.view.position/positionListView.title"/>
+        <item view="staff_Department.list"
+              title="msg://com.company.kindergartenservice.view.department/departmentListView.title"/>
     </menu>
 </menu-config>

@@ -117,11 +117,11 @@ resource_access.kindergarten_service.roles
 ```properties
 spring.security.oauth2.client.registration.keycloak.client-id=staff-service
 spring.security.oauth2.client.registration.keycloak.client-secret=o1A2gGJpaZMxWFPZtRW2jfGcvRX5foEY
-spring.security.oauth2.client.registration.keycloak.scope=openid, profile, email
+spring.security.oauth2.client.registration.keycloak.scope=openid,profile,address,email,offline_access
 spring.security.oauth2.client.provider.keycloak.issuer-uri=http://localhost:8180/realms/kindergarten
 spring.security.oauth2.resourceserver.jwt.issuer-uri=http://localhost:8180/realms/kindergarten
 spring.security.oauth2.client.provider.keycloak.user-name-attribute=preferred_username
-keycloak.role-path=resource_access.staff_service.roles
+keycloak.role-path=resource_access.service.roles
 ```
 
 * После запуска Jmix-приложения доступ к `/staff` будет требовать аутентификации через Keycloak.
@@ -135,7 +135,7 @@ keycloak.role-path=resource_access.staff_service.roles
 
 ```bash
 curl -X POST http://localhost:8180/realms/kindergarten/protocol/openid-connect/token \
---user staff-service:tEAcycuVgo7B17osgn4jupOoQA5XndgN \
+--user staff-service:kQlnnrG0S9TrQE33uMUAaCgVvimXzs95 \
 -H "Content-Type: application/x-www-form-urlencoded" \
 -d "grant_type=password&scope=openid&username=admin&password=admin"
 ```
