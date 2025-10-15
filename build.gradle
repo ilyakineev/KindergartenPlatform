@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'org.asciidoctor.jvm.convert' version '3.3.2'
 }
 
 group = 'ru.kindergarten'
@@ -16,4 +17,52 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+asciidoctor {
+    // Папка с исходниками документации
+    sourceDir = file('src/docs/asciidoc')
+    // Папка, куда кладётся сгенерированный HTML
+    outputDir = file('docs/asciidoc')
+
+    // Атрибуты, доступные внутри .adoc файлов
+    attributes = [
+            'project-name': 'Kindergarten Platform',
+            'sourcedir'   : 'src/main/java',
+            'imagesdir'   : 'images',
+            'toc'         : 'left',   // таблица содержания слева
+            'toclevels'   : 3,        // глубина оглавления
+            'numbered'    : true      // нумерация секций
+    ]
+
+    // Разрешаем доступ к локальным файлам (для include и image)
+    options = [
+            safe: 'unsafe'
+    ]
+
+    // Копируем изображения
+    resources {
+        from(sourceDir) {
+            include 'images/**'
+            include '**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.svg'
+        }
+    }
+
+    doFirst {
+        println "🚀 Генерация Asciidoctor-документации..."
+    }
+}
+
+// Доп. задача — копировать docs в resources, если нужно встроить в jar
+task copyDocs(type: Copy) {
+    from asciidoctor.outputDir
+    into 'build/resources/main/static/docs'
+}
+
+tasks.named('processResources') {
+    dependsOn copyDocs
+}
+
+tasks.named('asciidoctor') {
+    finalizedBy copyDocs
 }

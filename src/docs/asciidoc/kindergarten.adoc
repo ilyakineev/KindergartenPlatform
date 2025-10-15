@@ -1,0 +1,158 @@
+= Kindergarten Platform
+Илья Кинеев
+:revnumber: 0.0.1-SNAPSHOT
+:toc: left
+:toclevels: 3
+:sectnums:
+:icons: font
+:doctype: book
+:source-highlighter: rouge
+
+== О проекте
+
+**Kindergarten Platform** — это информационная система для управления деятельностью детского сада.
+Проект реализован на **Java 17** с использованием **Jmix** и **Spring Boot**.
+Платформа объединяет все процессы — от учёта детей и сотрудников до планирования расписаний, инвентаризации и аналитики.
+
+== Основные возможности
+
+* Учёт детей, групп и воспитателей
+* Планирование занятий и мероприятий
+* Учёт материалов и ресурсов
+* Генерация отчётов и аналитики
+* REST API для интеграции с внешними системами
+* Поддержка модульной архитектуры и расширяемости
+
+== Используемые технологии
+
+|===
+| Технология | Описание
+
+| **Java 17**
+| Современная версия языка Java, обеспечивающая высокую производительность, безопасность и поддержку новых возможностей JVM.
+
+| **Jmix**
+| Фреймворк для разработки корпоративных приложений с декларативной моделью данных, визуальным UI и генерацией CRUD-интерфейсов.
+
+| **Spring Boot**
+| Каркас приложения, обеспечивающий конфигурацию, внедрение зависимостей (DI) и реализацию REST API.
+
+| **PostgreSQL**
+| Основная СУБД для хранения данных, поддерживающая расширенные SQL-функции и JSON.
+
+| **MinIO**
+| Хранилище медиафайлов (фотографии, документы), совместимое с Amazon S3 API.
+
+| **Keycloak**
+| Система управления аутентификацией и авторизацией (OIDC, OAuth2, SSO).
+
+| **Docker / Docker Compose**
+| Контейнеризация и локальная оркестрация микросервисов для простого запуска и тестирования.
+
+| **Grafana**
+| Платформа для мониторинга и визуализации метрик.
+
+| **Hazelcast**
+| Распределённая платформа in-memory для кэширования и масштабирования данных.
+
+| **WebFlux**
+| Реактивный стек Spring для асинхронной обработки запросов и высоконагруженных сервисов.
+
+| **Asciidoctor**
+| Инструмент для генерации технической документации (HTML, PDF и др.) из файлов AsciiDoc.
+
+|===
+
+== Архитектура
+
+.Architecture overview
+image::architecture-diagram.png[Архитектура системы, width=800]
+
+Проект построен по модульному принципу и включает следующие компоненты:
+
+* **core** — доменные сущности и бизнес-логика;
+* **rest** — REST API для внешних клиентов;
+* **ui** — пользовательский интерфейс на Jmix;
+* **integration** — интеграции с внешними системами (Keycloak, MinIO и др.);
+* **analytics** — аналитика и агрегация данных для Apache Superset.
+
+== REST API
+
+Платформа предоставляет REST API для взаимодействия с внешними сервисами.
+Описание контрактов доступно в формате **OpenAPI (Swagger)** и автоматически генерируется при сборке.
+
+Пример эндпоинта:
+
+[source,json]
+----
+GET /api/v1/children/{id}
+
+Response:
+{
+  "id": "b6a3f8c1-7f54-4a9c-9f45-8f6b1c31a812",
+  "firstName": "Анна",
+  "lastName": "Иванова",
+  "birthDate": "2019-04-05",
+  "group": "Солнышко",
+  "attendanceStatus": "PRESENT"
+}
+----
+
+== Структура репозитория
+
+[source,text]
+----
+KindergartenPlatform/
+├─ core/
+│  ├─ src/main/java/ru/kindergarten/core/
+│  └─ resources/
+├─ rest/
+│  └─ src/main/java/ru/kindergarten/rest/
+├─ ui/
+│  └─ src/main/java/ru/kindergarten/ui/
+├─ integration/
+│  └─ src/main/java/ru/kindergarten/integration/
+├─ analytics/
+│  └─ src/main/java/ru/kindergarten/analytics/
+└─ docker/
+   └─ docker-compose.yml
+----
+
+== Локальный запуск
+
+1. Создать Docker-сеть:
++
+[source,bash]
+----
+chmod +x create-network.sh
+./create-network.sh
+docker network inspect kindergarten-net
+----
+
+2. Запустить контейнеры сервисов:
++
+[source,bash]
+----
+docker compose up -d
+----
+
+3. Проверить доступность сервисов:
++
+* `user-service` — Keycloak интеграция
+* `staff-service` — сотрудники
+* `kindergarten-service` — группы и дети
+* `media-service` — MinIO
+* `analytics-service` — Apache Superset
+
+== Документация
+
+* [user-service/README.adoc](user-service/README.adoc)
+* [staff-service/README.adoc](staff-service/README.adoc)
+* [kindergarten-service/README.adoc](kindergarten-service/README.adoc)
+* [analytics-service/README.adoc](analytics-service/README.adoc)
+* [media-service/README.adoc](media-service/README.adoc)
+
+== Автор
+
+© 2025, *Илья Кинеев*.
+Проект: *Kindergarten Platform* — информационная система для управления детским садом.
