@@ -103,17 +103,17 @@ public class Staff {
 
     @NotNull
     @JoinColumn(name = "POSITIONS_ID", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     private Position positions;
 
-    @JoinColumn(name = "DEPARTMENTS_ID", nullable = false)
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "DEPARTMENTS_ID", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     private Department departments;
 
     @NotNull
     @JoinColumn(name = "EMPLOYEE_STATUS_ID", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     private EmployeeStatus employeeStatus;
 
 }

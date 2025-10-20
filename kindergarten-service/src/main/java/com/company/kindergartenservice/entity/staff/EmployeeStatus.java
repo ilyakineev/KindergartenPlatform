@@ -16,7 +16,7 @@ import java.util.UUID;
 public class EmployeeStatus {
     @JmixId
     private UUID id;
-    @InstanceName
     private String name;
+    @InstanceName
     private String description;
 }

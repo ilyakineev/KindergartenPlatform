@@ -1,6 +1,7 @@
 package com.company.kindergartenservice.entity.staff;
 
 import io.jmix.core.entity.annotation.JmixId;
+import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import io.jmix.core.metamodel.annotation.Store;
 import lombok.Getter;
@@ -16,5 +17,6 @@ public class Position {
     @JmixId
     private UUID id;
     private String name;
+    @InstanceName
     private String description;
 }
