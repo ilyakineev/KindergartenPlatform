@@ -2,10 +2,12 @@ package com.company.kindergartenservice.entity;
 
 import io.jmix.core.DeletePolicy;
 import io.jmix.core.FileRef;
+import io.jmix.core.MetadataTools;
 import io.jmix.core.annotation.DeletedBy;
 import io.jmix.core.annotation.DeletedDate;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
 import io.jmix.core.entity.annotation.OnDelete;
+import io.jmix.core.metamodel.annotation.DependsOnProperties;
 import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import jakarta.persistence.*;
@@ -18,7 +20,7 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.OffsetDateTime;
-import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 @JmixEntity
@@ -71,9 +73,8 @@ public class Child {
             joinColumns = @JoinColumn(name = "CHILD_ID", referencedColumnName = "ID"),
             inverseJoinColumns = @JoinColumn(name = "PARENT_ID", referencedColumnName = "ID"))
     @ManyToMany
-    private Collection<Parent> parents;
+    private List<Parent> parents;
 
-    @InstanceName
     @Column(name = "FIRST_NAME", nullable = false)
     @NotNull
     private String firstName;
@@ -91,4 +92,18 @@ public class Child {
 
     @Column(name = "PHOTO", length = 1024)
     private FileRef photo;
+
+    @JoinTable(name = "KIND_GROUP_CHILD_LINK",
+            joinColumns = @JoinColumn(name = "CHILD_ID"),
+            inverseJoinColumns = @JoinColumn(name = "GROUP_ID"))
+    @ManyToMany
+    private List<Group> groups;
+
+    @InstanceName
+    @DependsOnProperties({"firstName", "lastName"})
+    public String getInstanceName(MetadataTools metadataTools) {
+        return String.format("%s %s",
+                metadataTools.format(firstName),
+                metadataTools.format(lastName));
+    }
 }

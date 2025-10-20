@@ -5,8 +5,12 @@
     <data>
         <instance id="childDc"
                   class="com.company.kindergartenservice.entity.Child">
-            <fetchPlan extends="_base"/>
+            <fetchPlan extends="_base">
+                <property name="parents" fetchPlan="_base"/>
+            </fetchPlan>
             <loader id="childDl"/>
+            <loader id="parentsDl"/>
+            <collection id="parentsDc" property="parents"/>
         </instance>
     </data>
     <facets>
@@ -28,6 +32,22 @@
             <textField id="birthDateField" property="birthDate"/>
             <fileStorageUploadField id="photoField" clearButtonVisible="true" fileNameVisible="true" property="photo"/>
         </formLayout>
+        <hbox id="parentsButton">
+            <button action="parentsDataGrid.add"/>
+            <button action="parentsDataGrid.refresh"/>
+            <button action="parentsDataGrid.exclude"/>
+        </hbox>
+        <dataGrid id="parentsDataGrid" dataContainer="parentsDc">
+            <actions>
+                <action id="add" type="list_add"/>
+                <action id="exclude" type="list_exclude"/>
+                <action id="refresh" type="list_refresh"/>
+            </actions>
+            <columns>
+                <column property="firstName"/>
+                <column property="lastName"/>
+            </columns>
+        </dataGrid>
         <hbox id="detailActions">
             <button id="saveAndCloseButton" action="saveAction"/>
             <button id="closeButton" action="closeAction"/>

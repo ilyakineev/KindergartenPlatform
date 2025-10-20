@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="kind">
+        <createTable tableName="KIND_GROUP_CHILD_LINK">
+            <column name="CHILD_ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_KIND_GROUP_CHILD_LINK"/>
+            </column>
+            <column name="GROUP_ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_KIND_GROUP_CHILD_LINK"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="kind">
+        <createTable tableName="KIND_GROUP_EDUCATOR_LINK">
+            <column name="EDUCATOR_ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_KIND_GROUP_EDUCATOR_LINK"/>
+            </column>
+            <column name="GROUP_ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_KIND_GROUP_EDUCATOR_LINK"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="3" author="kind">
+        <addForeignKeyConstraint baseColumnNames="CHILD_ID" baseTableName="KIND_GROUP_CHILD_LINK"
+                                 constraintName="FK_KINGROCHI_ON_CHILD" referencedColumnNames="ID"
+                                 referencedTableName="KIND_CHILD"/>
+    </changeSet>
+    <changeSet id="4" author="kind">
+        <addForeignKeyConstraint baseColumnNames="GROUP_ID" baseTableName="KIND_GROUP_CHILD_LINK"
+                                 constraintName="FK_KINGROCHI_ON_GROUP" referencedColumnNames="ID"
+                                 referencedTableName="KIND_GROUP"/>
+    </changeSet>
+    <changeSet id="5" author="kind">
+        <addForeignKeyConstraint baseColumnNames="EDUCATOR_ID" baseTableName="KIND_GROUP_EDUCATOR_LINK"
+                                 constraintName="FK_KINGROEDU_ON_EDUCATOR" referencedColumnNames="ID"
+                                 referencedTableName="KIND_EDUCATOR"/>
+    </changeSet>
+    <changeSet id="6" author="kind">
+        <addForeignKeyConstraint baseColumnNames="GROUP_ID" baseTableName="KIND_GROUP_EDUCATOR_LINK"
+                                 constraintName="FK_KINGROEDU_ON_GROUP" referencedColumnNames="ID"
+                                 referencedTableName="KIND_GROUP"/>
+    </changeSet>
+</databaseChangeLog>

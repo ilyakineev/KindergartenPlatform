@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <menu-config xmlns="http://jmix.io/schema/flowui/menu">
     <menu opened="true" id="application" title="msg://com.company.kindergartenservice/menu.application.title">
-        <item view="kind_Child.list" title="msg://com.company.kindergartenservice.view.child/childListView.title"/>
         <item view="kind_Group.list" title="msg://com.company.kindergartenservice.view.group/groupListView.title"/>
+        <item view="kind_Educator.list"
+              title="msg://com.company.kindergartenservice.view.educator/educatorListView.title"/>
         <item view="kind_Parent.list" title="msg://com.company.kindergartenservice.view.parent/parentListView.title"/>
+        <item view="kind_Child.list" title="msg://com.company.kindergartenservice.view.child/childListView.title"/>
     </menu>
 </menu-config>

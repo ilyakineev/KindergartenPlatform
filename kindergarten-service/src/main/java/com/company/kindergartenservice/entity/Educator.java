@@ -1,12 +1,16 @@
 package com.company.kindergartenservice.entity;
 
+import com.company.kindergartenservice.entity.staff.Staff;
+import io.jmix.core.MetadataTools;
 import io.jmix.core.annotation.DeletedBy;
 import io.jmix.core.annotation.DeletedDate;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
+import io.jmix.core.entity.annotation.SystemLevel;
+import io.jmix.core.metamodel.annotation.DependsOnProperties;
 import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
+import io.jmix.core.metamodel.annotation.JmixProperty;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedBy;
@@ -19,11 +23,13 @@ import java.util.List;
 import java.util.UUID;
 
 @JmixEntity
-@Table(name = "KIND_GROUP")
-@Entity(name = "kind_Group")
+@Table(name = "KIND_EDUCATOR", indexes = {
+        @Index(name = "IDX_KIND_EDUCATOR_GROUP", columnList = "GROUP_ID")
+})
+@Entity(name = "kind_Educator")
 @Setter
 @Getter
-public class Group {
+public class Educator {
     @JmixGeneratedValue
     @Column(name = "ID", nullable = false)
     @Id
@@ -57,20 +63,39 @@ public class Group {
     @Column(name = "DELETED_DATE")
     private OffsetDateTime deletedDate;
 
-    @JoinTable(name = "KIND_GROUP_CHILD_LINK",
-            joinColumns = @JoinColumn(name = "GROUP_ID"),
-            inverseJoinColumns = @JoinColumn(name = "CHILD_ID"))
-    @ManyToMany
-    private List<Child> children;
+    @SystemLevel
+    @Column(name = "STAFF_ID")
+    private UUID staffId;
 
-    @InstanceName
-    @Column(name = "NAME", nullable = false)
-    @NotNull
-    private String name;
+    @Column(name = "POSITION_")
+    private String position;
+
+    @JoinColumn(name = "GROUP_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Group group;
+
+    @DependsOnProperties({"staffId"})
+    @JmixProperty
+    @Transient
+    private Staff staff;
 
     @JoinTable(name = "KIND_GROUP_EDUCATOR_LINK",
-            joinColumns = @JoinColumn(name = "GROUP_ID"),
-            inverseJoinColumns = @JoinColumn(name = "EDUCATOR_ID"))
+            joinColumns = @JoinColumn(name = "EDUCATOR_ID"),
+            inverseJoinColumns = @JoinColumn(name = "GROUP_ID"))
     @ManyToMany
-    private List<Educator> educators;
+    private List<Group> groups;
+
+    public Position getPosition() {
+        return position == null ? null : Position.fromId(position);
+    }
+
+    public void setPosition(Position position) {
+        this.position = position == null ? null : position.getId();
+    }
+
+    @InstanceName
+    @DependsOnProperties({"staff"})
+    public String getInstanceName(MetadataTools metadataTools) {
+        return metadataTools.format(staff);
+    }
 }

@@ -5,8 +5,18 @@
     <data>
         <instance id="groupDc"
                   class="com.company.kindergartenservice.entity.Group">
-            <fetchPlan extends="_base"/>
+            <fetchPlan extends="_base">
+                <property fetchPlan="_base" name="educators">
+                    <property fetchPlan="_instance_name" name="staff"/>
+                </property>
+                <property fetchPlan="_instance_name" name="children" fetch="AUTO">
+                    <property name="lastName"/>
+                </property>
+            </fetchPlan>
             <loader id="groupDl"/>
+            <loader id="educatorsDl"/>
+            <collection id="childrenDc" property="children"/>
+            <collection id="educatorsDc" property="educators"/>
         </instance>
     </data>
     <facets>
@@ -24,6 +34,38 @@
             </responsiveSteps>
             <textField id="nameField" property="name"/>
         </formLayout>
+        <hbox id="educatorsButton">
+            <button action="educatorsDataGrid.add"/>
+            <button action="educatorsDataGrid.refresh"/>
+            <button action="educatorsDataGrid.exclude"/>
+        </hbox>
+        <dataGrid id="educatorsDataGrid" dataContainer="educatorsDc" minWidth="100px" width="100%">
+            <actions>
+                <action id="add" type="list_add"/>
+                <action id="exclude" type="list_exclude"/>
+                <action id="refresh" type="list_refresh"/>
+            </actions>
+            <columns>
+                <column property="staff"/>
+                <column property="position"/>
+            </columns>
+        </dataGrid>
+        <hbox id="childrenButton">
+            <button action="childrenDataGrid.add"/>
+            <button action="childrenDataGrid.refresh"/>
+            <button action="childrenDataGrid.exclude"/>
+        </hbox>
+        <dataGrid id="childrenDataGrid" dataContainer="childrenDc" minWidth="100px" width="100%">
+            <actions>
+                <action id="add" type="list_add"/>
+                <action id="exclude" type="list_exclude"/>
+                <action id="refresh" type="list_refresh"/>
+            </actions>
+            <columns>
+                <column property="firstName"/>
+                <column property="lastName"/>
+            </columns>
+        </dataGrid>
         <hbox id="detailActions">
             <button id="saveAndCloseButton" action="saveAction"/>
             <button id="closeButton" action="closeAction"/>
