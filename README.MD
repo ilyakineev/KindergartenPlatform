@@ -8,28 +8,6 @@
 [![Docker](https://img.shields.io/badge/Docker-Compose-blue.svg)](https://docs.docker.com/compose/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-blue.svg)](https://www.postgresql.org/)
 
-## Содержание
-
-- [Быстрый старт](#быстрый-старт)
-- [Архитектура](#архитектура)
-- [Сервисы](#сервисы)
-- [Технологии](#технологии)
-- [Установка и настройка](#установка-и-настройка)
-- [Решение проблем](#решение-проблем)
-- [Дополнительная документация](#дополнительная-документация)
-
-## Дополнительные документы
-
-- [Быстрый старт](QUICK_START.md) - Запуск за 5 минут
-- [Архитектура](ARCHITECTURE.md) - Подробная схема системы
-- [Глоссарий](GLOSSARY.md) - Термины и определения
-- [Чек-лист разработчика](DEVELOPMENT_CHECKLIST.md) - Контрольный список для разработки
-- [FAQ](FAQ.md) - Часто задаваемые вопросы
-- [Changelog](CHANGELOG.md) - История изменений
-- [Руководство по контрибьюции](CONTRIBUTING.md) - Как внести вклад в проект
-
----
-
 ## Быстрый старт
 
 ### Предварительные требования
@@ -41,21 +19,17 @@
 ### Запуск за 5 минут
 
 ```bash
-# 1. Клонируйте репозиторий
-git clone <repository-url>
-cd KindergartenPlatform
-
-# 2. Создайте Docker сеть
+# 1. Создайте Docker сеть
 chmod +x create-network.sh
 ./create-network.sh
 
-# 3. Запустите все сервисы
+# 2. Запустите все сервисы
 ./kindergarten-service-db/reset-postgres.sh
 ./staff-service-db/reset-postgres.sh
 ./user-service/reset-keycloak.sh
 ./media-service/reset-minio.sh
 
-# 4. Запустите приложения
+# 3. Запустите приложения
 ./gradlew kindergarten-service:bootRun &
 ./gradlew staff-service:bootRun
 ```
@@ -253,57 +227,6 @@ docker network inspect kindergarten-net
 
 ---
 
-## Решение проблем
-
-### Частые проблемы
-
-#### Проблема: Сервис не запускается
-
-**Решение:**
-```bash
-# Проверьте статус Docker контейнеров
-docker ps -a
-
-# Проверьте логи
-docker logs <container-name>
-
-# Перезапустите сервис
-./<service-name>/reset-<service>.sh
-```
-
-#### Проблема: Ошибка подключения к базе данных
-
-**Решение:**
-1. Убедитесь, что PostgreSQL контейнер запущен
-2. Проверьте настройки в `application-dev.properties`
-3. Проверьте доступность портов (5433, 5435)
-
-#### Проблема: Ошибка аутентификации Keycloak
-
-**Решение:**
-1. Проверьте, что Keycloak запущен на порту 8180
-2. Убедитесь, что realm `kindergarten` создан
-3. Проверьте client secrets в конфигурации
-
-#### Проблема: MinIO недоступен
-
-**Решение:**
-```bash
-# Проверьте статус MinIO
-docker logs kindergarten-minio
-
-# Перезапустите MinIO
-./media-service/reset-minio.sh
-```
-
-### Получение помощи
-
-- **Email:** [ваш-email@example.com]
-- **Issues:** [GitHub Issues](ссылка-на-issues)
-- **Документация:** [Wiki проекта](ссылка-на-wiki)
-
----
-
 ## Дополнительная документация
 
 ### Документация сервисов
@@ -323,53 +246,9 @@ docker logs kindergarten-minio
 
 - [Postman Collection](postmanConfig/README.md)
 
-### Техническая документация
-
-- [API Documentation](docs/)
-- [Architecture Overview](docs/architecture.md)
-- [Development Guide](docs/development.md)
-
----
-
-## Лицензия
-
-Этот проект распространяется под лицензией [MIT License](LICENSE).
-
-## Кодекс поведения
-
-Этот проект следует [Кодексу поведения](CODE_OF_CONDUCT.md). Участвуя в проекте, вы соглашаетесь соблюдать его принципы.
-
-## Безопасность
-
-Если вы обнаружили уязвимость безопасности, пожалуйста, сообщите об этом ответственно. См. [Политику безопасности](SECURITY.md) для получения подробной информации.
-
-## Поддержка
-
-Нужна помощь? См. [Политику поддержки](SUPPORT.md) для получения информации о том, как получить помощь.
-
-## Конфиденциальность
-
-Мы серьезно относимся к защите ваших данных. См. [Политику конфиденциальности](PRIVACY.md) для получения подробной информации.
-
-## Условия использования
-
-Используя наш сервис, вы соглашаетесь с [Условиями использования](TERMS.md).
-
----
-
-## Команда разработки
-
-- **Lead Developer:** [Ваше имя]
-- **Backend Team:** [Команда]
-- **DevOps:** [Команда]
-
-**Подробнее:** [Контрибьюторы](CONTRIBUTORS.md)
-
 ---
 
 <div align="center">
-
-**Сделано с ❤️ для детских садов**
 
 [⬆️ Наверх](#kindergarten-platform)
 
