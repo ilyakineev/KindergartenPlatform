@@ -9,6 +9,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/event-calendar-service" />
             <option value="$PROJECT_DIR$/kindergarten-service" />
             <option value="$PROJECT_DIR$/staff-service" />
           </set>

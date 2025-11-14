@@ -3,4 +3,5 @@ rootProject.name = 'KindergartenPlatform'
 include(
         "kindergarten-service",
         "staff-service",
+        "event-calendar-service",
 )
