@@ -19,7 +19,6 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.OffsetDateTime;
-import java.util.List;
 import java.util.UUID;
 
 @JmixEntity
@@ -78,12 +77,6 @@ public class Educator {
     @JmixProperty
     @Transient
     private Staff staff;
-
-    @JoinTable(name = "KIND_GROUP_EDUCATOR_LINK",
-            joinColumns = @JoinColumn(name = "EDUCATOR_ID"),
-            inverseJoinColumns = @JoinColumn(name = "GROUP_ID"))
-    @ManyToMany
-    private List<Group> groups;
 
     public Position getPosition() {
         return position == null ? null : Position.fromId(position);

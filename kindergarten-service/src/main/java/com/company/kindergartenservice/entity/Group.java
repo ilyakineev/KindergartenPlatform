@@ -57,20 +57,15 @@ public class Group {
     @Column(name = "DELETED_DATE")
     private OffsetDateTime deletedDate;
 
-    @JoinTable(name = "KIND_GROUP_CHILD_LINK",
-            joinColumns = @JoinColumn(name = "GROUP_ID"),
-            inverseJoinColumns = @JoinColumn(name = "CHILD_ID"))
-    @ManyToMany
-    private List<Child> children;
-
     @InstanceName
     @Column(name = "NAME", nullable = false)
     @NotNull
     private String name;
 
-    @JoinTable(name = "KIND_GROUP_EDUCATOR_LINK",
-            joinColumns = @JoinColumn(name = "GROUP_ID"),
-            inverseJoinColumns = @JoinColumn(name = "EDUCATOR_ID"))
-    @ManyToMany
+    @OneToMany(mappedBy = "group")
+    private List<Child> childs;
+
+    @OneToMany(mappedBy = "group")
     private List<Educator> educators;
+
 }

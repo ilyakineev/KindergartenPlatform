@@ -64,16 +64,16 @@ public class Child {
     @Column(name = "DELETED_DATE")
     private OffsetDateTime deletedDate;
 
-    @JoinColumn(name = "GROUP_ID")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Group group;
-
     @OnDelete(DeletePolicy.CASCADE)
     @JoinTable(name = "KIND_CHILD_PARENT_LINK",
             joinColumns = @JoinColumn(name = "CHILD_ID", referencedColumnName = "ID"),
             inverseJoinColumns = @JoinColumn(name = "PARENT_ID", referencedColumnName = "ID"))
     @ManyToMany
     private List<Parent> parents;
+
+    @JoinColumn(name = "GROUP_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Group group;
 
     @Column(name = "FIRST_NAME", nullable = false)
     @NotNull
@@ -92,12 +92,6 @@ public class Child {
 
     @Column(name = "PHOTO", length = 1024)
     private FileRef photo;
-
-    @JoinTable(name = "KIND_GROUP_CHILD_LINK",
-            joinColumns = @JoinColumn(name = "CHILD_ID"),
-            inverseJoinColumns = @JoinColumn(name = "GROUP_ID"))
-    @ManyToMany
-    private List<Group> groups;
 
     @InstanceName
     @DependsOnProperties({"firstName", "lastName"})

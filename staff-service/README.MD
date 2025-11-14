@@ -247,7 +247,7 @@ curl http://localhost:8081/staff/rest/entities/Staff
 
 - **API Documentation:** [Swagger UI](http://localhost:8081/staff/swagger-ui.html)
 - **Database Schema:** [Liquibase Changelog](src/main/resources/com/company/staffservice/liquibase/)
-- **Test Data:** [SQL Script](date.sql)
+- **Test Data:** [SQL Script](../staff-service-db/date.sql)
 - **Configuration:** [Application Properties](src/main/resources/)
 
 ---

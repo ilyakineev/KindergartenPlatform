@@ -9,13 +9,12 @@
                 <property fetchPlan="_base" name="educators">
                     <property fetchPlan="_instance_name" name="staff"/>
                 </property>
-                <property fetchPlan="_instance_name" name="children" fetch="AUTO">
-                    <property name="lastName"/>
+                <property fetchPlan="_instance_name" name="childs" fetch="AUTO">
                 </property>
             </fetchPlan>
             <loader id="groupDl"/>
             <loader id="educatorsDl"/>
-            <collection id="childrenDc" property="children"/>
+            <collection id="childrenDc" property="childs"/>
             <collection id="educatorsDc" property="educators"/>
         </instance>
     </data>
